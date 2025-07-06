@@ -7,6 +7,7 @@ const rateLimit = require('express-rate-limit');
 // --- Basic Setup ---
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.set('trust proxy', 1);
 app.use(express.json()); // Middleware to parse JSON request bodies
 
 // --- Security Middleware ---
