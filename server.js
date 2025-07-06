@@ -43,13 +43,13 @@ async function startApp() {
     
     // Login the bot account at startup
     try {
-        await noblox.setCookie(process.env.ROBLOX_COOKIE);
-        const currentUser = await noblox.getCurrentUser();
-        console.log(`Successfully logged in as ${currentUser.UserName} [${currentUser.UserID}]`);
+        // This is the new login method. It's simpler and more reliable.
+        await noblox.setRobloxOpenCloud(process.env.ROBLOX_OPEN_CLOUD_KEY);
+        console.log(`Successfully authenticated with Open Cloud API.`);
         console.log(`API is configured for Group ID: ${process.env.GROUP_ID}`);
     } catch (err) {
-        console.error("FATAL ERROR: Could not log in with the provided ROBLOX_COOKIE.", err.message);
-        process.exit(1); // Exit if login fails
+        console.error("FATAL ERROR: Could not authenticate with the provided ROBLOX_OPEN_CLOUD_KEY.", err.message);
+        process.exit(1); 
     }
 
     // --- API Endpoints ---
