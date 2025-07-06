@@ -1,7 +1,7 @@
 // --- Imports ---
 require('dotenv').config();
 const express = require('express');
-const noblox = require('noblox.js-premium');
+const noblox = require('noblox.js');
 const rateLimit = require('express-rate-limit');
 
 // --- Basic Setup ---
