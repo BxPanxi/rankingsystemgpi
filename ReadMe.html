@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Ranking System - Documentation</title>
+    <style>
+        /* CSS Variables for Easy Theming */
+        :root {
+            --bg-color: #1e1e2e;
+            --surface-color: #282a36;
+            --text-color: #f8f8f2;
+            --primary-color: #88c0d0;
+            --accent-color: #50fa7b;
+            --error-color: #ff5555;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --code-font: 'Fira Code', 'Courier New', monospace;
+        }
+
+        /* Basic Reset & Body Styling */
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            line-height: 1.6;
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: 250px;
+            background-color: var(--surface-color);
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            border-right: 1px solid #44475a;
+        }
+        nav h1 {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        nav ul li a:hover {
+            background-color: #44475a;
+        }
+
+        /* Main Content Area */
+        main {
+            margin-left: 290px;
+            padding: 20px 40px;
+            max-width: 800px;
+        }
+        section {
+            margin-bottom: 50px;
+            padding-top: 20px;
+            border-bottom: 1px solid #44475a;
+        }
+        section:last-of-type {
+            border-bottom: none;
+        }
+        h2 {
+            color: var(--primary-color);
+            font-size: 2em;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+        }
+        code {
+            background-color: var(--surface-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--code-font);
+            color: var(--accent-color);
+        }
+        pre {
+            background-color: var(--surface-color);
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #44475a;
+        }
+        .warning {
+            background-color: #ffb86c20;
+            border-left: 5px solid #ffb86c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .warning strong {
+            color: #ffb86c;
+        }
+        .button-deploy {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        .button-deploy:hover {
+            transform: scale(1.05);
+        }
+        .version-info {
+            font-size: 0.9em;
+            color: #bd93f9;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>Ranking System</h1>
+        <p class="version-info">Version 1.0.0 | Last Updated: July 2024</p>
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#setup">Setup Guide</a></li>
+            <li><a href="#configuration">Configuration</a></li>
+            <li><a href="#usage">Usage</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- INTRODUCTION SECTION -->
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Welcome to the Secure Ranking System! This is a complete, open-source solution for managing your Roblox group ranks directly from in-game. It features a modern user interface and a secure backend API designed for easy deployment.</p>
+            <h3>Features:</h3>
+            <ul>
+                <li><strong>Secure API:</strong> Your bot's cookie is never exposed to Roblox clients. All actions are handled by a secure, separate web server.</li>
+                <li><strong>One-Click Deployment:</strong> The backend is a GitHub template ready for instant deployment on Railway.</li>
+                <li><strong>Modern UI:</strong> A sleek, responsive in-game panel built with the Fusion framework.</li>
+                <li><strong>Server-Side Validation:</strong> All ranking actions are validated by the server, preventing exploits.</li>
+                <li><strong>Fully Open-Source:</strong> You have full access to the code for transparency and customization.</li>
+            </ul>
+        </section>
+
+        <!-- SETUP GUIDE SECTION -->
+        <section id="setup">
+            <h2>🚀 Setup Guide</h2>
+            <p>Follow these three steps to get your ranking system live.</p>
+
+            <h3>Step 1: Deploy the Web Server</h3>
+            <p>This will create your secure API on the Railway platform.</p>
+            <ol>
+                <li>If you don't have one, create a free <a href="https://github.com" target="_blank">GitHub</a> account.</li>
+                <li>Click the button below to deploy the server. You'll be asked to sign into Railway with your GitHub account.</li>
+            </ol>
+            <a href="https://railway.app/new/template?template=https://github.com/[YOUR_GITHUB_USERNAME]/[YOUR_REPO_NAME]" target="_blank" class="button-deploy">Deploy to Railway</a>
+            <p><small><b>Note:</b> You must replace the URL above with your own GitHub template repository link before distributing.</small></p>
+
+            <h3>Step 2: Configure Environment Variables</h3>
+            <p>After deploying, Railway will prompt you for variables. This is the most critical step.</p>
+            <ol>
+                <li>In the Railway dashboard, find the **Variables** tab for your new project.</li>
+                <li>Add the following variables:</li>
+                <ul>
+                    <li><code>GROUP_ID</code>: The numerical ID of your Roblox group.</li>
+                    <li><code>API_KEY</code>: Create a long, random password here. Use a password generator. You'll need this exact key in Roblox Studio.</li>
+                    <li><code>ROBLOX_COOKIE</code>: The <code>.ROBLOSECURITY</code> cookie of your bot account.</li>
+                </ul>
+            </ol>
+            <div class="warning">
+                <strong>SECURITY WARNING:</strong> Always use a new, dedicated Roblox bot account for this system. <strong>NEVER</strong> use your main account's cookie. Give the bot account a role in your group with permissions to manage ranks below it.
+            </div>
+
+            <h3>Step 3: Install in Roblox Studio</h3>
+            <p>The final step is to put the system into your game.</p>
+            <ol>
+                <li>Get the model from GPI and insert it into your game.</li>
+                <li>Place the <code>RankingSystem</code> model into <strong>ReplicatedStorage</strong>.</li>
+                <li>Place the <code>RankingPanel</code> ScreenGui into <strong>StarterGui</strong>.</li>
+                <li>Make sure the <strong>Fusion</strong> module is also in ReplicatedStorage.</li>
+            </ol>
+        </section>
+        
+        <!-- CONFIGURATION SECTION -->
+        <section id="configuration">
+            <h2>Configuration</h2>
+            <p>Navigate to <code>ReplicatedStorage/RankingSystem/Configuration</code> in Roblox Studio and set the following values:</p>
+            <ul>
+                <li><strong>API_ENDPOINT (StringValue):</strong> In Railway, go to your project's <strong>Settings</strong> tab. Copy the public URL (it looks like <code>https://my-app-production.up.railway.app</code>) and paste it here.</li>
+                <li><strong>API_KEY (StringValue):</strong> Paste the exact same secret key you created in Railway.</li>
+                <li><strong>GROUP_ID (NumberValue):</strong> Your Roblox group's ID.</li>
+                <li><strong>MINIMUM_RANK_TO_USE (NumberValue):</strong> The rank number (0-255) a user must have to use the panel.</li>
+            </ul>
+        </section>
+        
+        <!-- USAGE SECTION -->
+        <section id="usage">
+            <h2>Usage</h2>
+            <p>Once configured, the system is ready.
+            <ul>
+                <li>Press <strong>F2</strong> (or the key you configure in the script) to toggle the panel's visibility.</li>
+                <li>Type a user's exact username into the input box.</li>
+                <li>Click on the desired role from the list to rank the user.</li>
+                <li>The status bar at the bottom will provide real-time feedback.</li>
+            </ul>
+            </p>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq">
+            <h2>Frequently Asked Questions</h2>
+            <dl>
+                <dt>I'm getting a "401 Unauthorized" or "Invalid API Key" error.</dt>
+                <dd>Your <code>API_KEY</code> in Roblox Studio does not match the one in your Railway variables. Check for typos or extra spaces.</dd>
+                <br>
+                <dt>The panel shows "Failed to fetch group roles."</dt>
+                <dd>This means the game can't reach your API. Check that your <code>API_ENDPOINT</code> in Studio is correct and that your Railway app is deployed and running without errors.</dd>
+                <br>
+                <dt>The bot isn't ranking anyone, and I see a "Forbidden" error.</dt>
+                <dd>The rank you are trying to assign is equal to or higher than the bot's own rank in the group. The bot can only manage ranks below its own.</dd>
+            </dl>
+        </section>
+
+    </main>
+
+</body>
+</html>
